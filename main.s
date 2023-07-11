@@ -2,20 +2,38 @@
 
 .data
 
+.include "code/macros.s"
+.include "code/constants.s"
+.include "code/data.s"
 
 .text
+
+	call Setup
 	
+Game:
 	
+	call Tec
+	
+	j Game
+						
+	li a7, 10
+	ecall		
 
 # === Região para dar includes === #
 
-
-.include "code/teclado.s"
-.include "code/print.s"
-.include "code/macros.s"
-
-.include "code/SYSTEMv21.s"
-
 .data
 
-	 
+.include "sprites/charDireita.data"
+.include "sprites/charEsquerda.data"
+.include "sprites/map.s"
+.include "sprites/tile.s"
+
+.text
+.include "code/teclado.s"
+.include "code/print.s"
+.include "code/setup.s"
+.include "code/moveChar.s"
+
+
+
+.include "code/SYSTEMv21.s"
