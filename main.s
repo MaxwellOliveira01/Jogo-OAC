@@ -15,12 +15,6 @@ Main:
 Game:
 	call Tec
 	
-	# Inverte o frame atual
-	#li t0, 0xFF200604
-	#lh s0, 0(t0)
-	#xori s0, s0, 1
-	#sw s0, 0(t0)
-	
 	j Game
 						
 	li a7, 10
@@ -39,6 +33,7 @@ Game:
 .text
 .include "code/teclado.s"
 .include "code/print.s"
+.include "code/printMap.s"
 .include "code/setup.s"
 .include "code/moveChar.s"
 

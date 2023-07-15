@@ -59,36 +59,51 @@ MoveChar:
     add t1, t1, a1              # add o incremento no y
     sh t1, 2(t0)                # Salva o novo y
 	
-	# Apaga o rastro nos dois frames
+	# Desenha no frame oculto, inverte o frame e desenha no atual
+	# Pega o frame oculto em s1
+	li s1, 0xFF200604
+	lh s1, 0(s1)
+	xori s1, s1, 1
 	
+	# Desenha a tile em oldCharPos no frame oculto
 	la a0, tile										
 	la t0, OldCharPos
 	lh a1, 0(t0)
 	lh a2, 2(t0)
-	li a3, 0
+	mv a3, s1
 	call Print
+	
+	# Desenha o personagem no frame oculto
+	la a0, CharDireita
+	la t0, CharPos
+	lh a1, 0(t0)
+	lh a2, 2(t0)
+	mv a3, s1
+	call Print
+	
+	# Inverte o frame atual
+	li t0, 0xFF200604
+	sw s1, 0(t0)
+	
+	# Pega o frame oculto dnv
+	
+	xori s1, s1, 1
 
+	
+	# Desenha a tile em oldCharPos no frame oculto
 	la a0, tile										
 	la t0, OldCharPos
 	lh a1, 0(t0)
 	lh a2, 2(t0)
-	li a3, 1
+	mv a3, s1
 	call Print
-
-	# Desenha o personagem na coord nova nos 2 frames
 	
+	# Desenha o personagem no frame oculto
 	la a0, CharDireita
 	la t0, CharPos
 	lh a1, 0(t0)
 	lh a2, 2(t0)
-	li a3, 0
-	call Print
-	
-	la a0, CharDireita
-	la t0, CharPos
-	lh a1, 0(t0)
-	lh a2, 2(t0)
-	li a3, 1
+	mv a3, s1
 	call Print
 	
 	LoadRegisters()
@@ -106,53 +121,77 @@ MoveCamera:
 	add s1, s1, a0
 	sw s1, 0(s0)
 	
-	DebugString("Camera se movendo")
-	DebugInt(s1)
+	#DebugString("Camera se movendo")
+	#DebugInt(s1)
 	
-	# Desenha a tile por cima do personagem
+	# Desenha no frame oculto, inverte o frame e desenha no atual
+	
+	# Pega o frame oculto em s1
+	
+	li s1, 0xFF200604
+	lh s1, 0(s1)
+	xori s1, s1, 1
+	
+	# Desenha a tile por cima do personagem no frame oculto
 	
 	la a0, tile
 	la t0, CharPos
 	lh a1, 0(t0)
 	lh a2, 2(t0)
-	li a3, 0
+	mv a3, s1
 	call Print
 
-	la a0, tile
-	la t0, CharPos
-	lh a1, 0(t0)
-	lh a2, 2(t0)
-	li a3, 1
-	call Print
+	# Desenha o mapa no frame oculto
 
-	DebugString("Movendo o mapa....")
-			
 	la a0, map
 	li a1, 0
 	li a2, 0
-	li a3, 0
+	mv a3, s1
 	call PrintMap
-	li a3, 1
-	call PrintMap
-
-	# Desenha o personagem dnv
 	
-	la a0, CharDireita
-	la t0, CharPos
-	lh a1, 0(t0)
-	lh a2, 2(t0)
-	li a3, 0
-	call Print
+	# Desenha o personagem no no frame oculto
 
 	la a0, CharDireita
 	la t0, CharPos
 	lh a1, 0(t0)
 	lh a2, 2(t0)
-	li a3, 1
+	mv a3, s1
+	call Print
+	
+	# Inverte o frame atual
+	li t0, 0xFF200604
+	sw s1, 0(t0)
+	
+	# Pega o frame oculto dnv
+	
+	xori s1, s1, 1
+	
+	# Desenha a tile por cima do personagem no frame oculto
+	
+	la a0, tile
+	la t0, CharPos
+	lh a1, 0(t0)
+	lh a2, 2(t0)
+	mv a3, s1
 	call Print
 
+	# Desenha o mapa no frame oculto
+
+	la a0, map
+	li a1, 0
+	li a2, 0
+	mv a3, s1
+	call PrintMap
+	
+	# Desenha o personagem no no frame oculto
+
+	la a0, CharDireita
+	la t0, CharPos
+	lh a1, 0(t0)
+	lh a2, 2(t0)
+	mv a3, s1
+	call Print
+	
 	LoadRegisters()
 	
 	ret
-	
-
