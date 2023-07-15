@@ -16,5 +16,15 @@ Tec:
 	li a0,-8					# add em x para ir pra esq			
 	li a1,0						# add em y para ir pra esq
 	beq t2,t0, MoveSomething	# se tecla pressionada for 'a', move pra esquerda
+	
+	li t0, 's'
+	li a0, 0
+	li a1, 8
+	beq t2, t0, MoveSomething
+	
+	li t0, 'w'
+	li a0, 0
+	li a1, -8
+	beq t2, t0, MoveSomething
 		
 FIM:	ret						# retorna
