@@ -1,8 +1,9 @@
 Setup:
 	SaveRegisters()
 	
-	# Desenha o mapa inicial 'map'
 	
+	# Desenha o mapa inicial 'map'
+		
 	la a0, map
 	li a1, 0
 	li a2, 0

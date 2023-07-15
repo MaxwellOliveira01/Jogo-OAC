@@ -8,11 +8,18 @@
 
 .text
 
+Main:
+
 	call Setup
 	
 Game:
-	
 	call Tec
+	
+	# Inverte o frame atual
+	#li t0, 0xFF200604
+	#lh s0, 0(t0)
+	#xori s0, s0, 1
+	#sw s0, 0(t0)
 	
 	j Game
 						
@@ -26,6 +33,7 @@ Game:
 .include "sprites/charDireita.data"
 .include "sprites/charEsquerda.data"
 .include "sprites/map.s"
+.include "sprites/map2.s"
 .include "sprites/tile.s"
 
 .text

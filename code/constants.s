@@ -1,0 +1,1 @@
+LarguraTela: .word 320
