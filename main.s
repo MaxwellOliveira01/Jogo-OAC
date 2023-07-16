@@ -25,6 +25,7 @@ Game:
 .data
 
 .include "sprites/charDireita.data"
+.include "sprites/charDireitaMovendo.data"
 .include "sprites/charEsquerda.data"
 .include "sprites/map.s"
 .include "sprites/map2.s"
@@ -36,7 +37,7 @@ Game:
 .include "code/printMap.s"
 .include "code/setup.s"
 .include "code/moveChar.s"
-
-
+.include "code/moveCamera.s"
+.include "code/moveSomething.s"
 
 .include "code/SYSTEMv21.s"
