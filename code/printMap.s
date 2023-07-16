@@ -24,12 +24,12 @@ PrintMap:
 	li t5,240				# carrega a altura em t5 do display
 	
 PrintMapLinha:
-	lw s0, 4(t0)				# le o que tá no endereço da frente do bitmap
+	lw s0, 8(t0)				# le o que tá no endereço da em 2 tiles a frente do bitmap
 	sw s0, 0(t0)				# sava nesse endereço aqui
 	
-	#DebugInt(t3)
 	addi t0, t0, 4				# avança o endereço do bitmap
 	addi t3, t3, 4				# incrementa a coluna
+	
 	blt t3, t4, PrintMapLinha 	# coluna < largura-2 tiles, printa a proxima
 	
 	addi t0, t0, 320			# add a largura da imagem
