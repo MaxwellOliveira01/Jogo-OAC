@@ -26,5 +26,8 @@ Tec:
 	li a0, 0
 	li a1, -8
 	beq t2, t0, MoveSomething
+	
+	li t0, 'k'
+	beq t2, t0, Utils
 		
 FIM:	ret						# retorna

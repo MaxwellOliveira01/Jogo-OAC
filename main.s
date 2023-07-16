@@ -39,5 +39,6 @@ Game:
 .include "code/moveChar.s"
 .include "code/moveCamera.s"
 .include "code/moveSomething.s"
+.include "code/utils.s"
 
 .include "code/SYSTEMv21.s"

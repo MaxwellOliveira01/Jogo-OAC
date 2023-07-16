@@ -1,14 +1,22 @@
+
+# a0 = incremento em x
+# a1 = incremento em y
+
 MoveChar:
 	
 	SaveRegisters()
 	
+	j CheckBounds
+	
+ContinueMoveChar:
+
 	# Salva a posição atual como antiga
 	
-	la t0,CharPos				#carrega o endereço da posição atual
-	la t1,OldCharPos			#carrega o endereço da posiçõ antiga
+	la t0,CharPos				# Carrega o endereço da posição atual
+	la t1,OldCharPos			# Carrega o endereço da posiçõ antiga
 
-    lw t2,0(t0)					#Carrega a posição atual
-    sw t2,0(t1)					#Salva a posição atual em OLD_CHAR_POS
+    lw t2,0(t0)					# Carrega a posição atual
+    sw t2,0(t1)					# Salva a posição atual em OLD_CHAR_POS
 
 	# Adiciona os incrementos em x e y
 
@@ -49,7 +57,6 @@ MoveChar:
 	# Pega o frame oculto dnv
 	
 	xori s1, s1, 1
-
 	
 	# Desenha a tile em oldCharPos no frame oculto
 	la a0, tile										
@@ -67,7 +74,41 @@ MoveChar:
 	mv a3, s1
 	call Print
 	
+MoveCharReturn: 	
 	LoadRegisters()
-
-MoveCharReturn: 
 	ret
+
+CheckBounds:
+
+______AAAA:
+
+	# Não deixar o personagem sair do grid
+	
+	la t0, CharPos
+	lh t1, 0(t0)				# Lê o x atual do personagem
+	lh t2, 2(t0)				# Lê o y atual do personagem
+	
+	add t1, t1, a0				# Adiciona o incremento em x
+	add t2, t2, a1				# Adiciona o incremento em y
+	
+	la t0, CharDireita
+	lw t3, 0(t0)				# Carrega a largura do personagem
+	lw t4, 4(t0)				# Carrega a altura do personagem
+	
+	#if t1 < 0 || t2 < 0
+	blt t1, zero, MoveCharReturn
+	blt t2, zero, MoveCharReturn
+	
+	#if t1 + tamanhoPersonagem > 320
+	li t0, 320
+	add t1, t1, t3 
+	bgt t1, t0, MoveCharReturn
+	
+	#if t2 + alturaPersonagem >= 240
+	li t0, 240
+	add t2, t2, t4
+	bgt t2, t0, MoveCharReturn
+	
+	# Ok, ele estará dentro do grid
+	j ContinueMoveChar
+	

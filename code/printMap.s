@@ -26,10 +26,11 @@ PrintMap:
 PrintMapLinha:
 	lw s0, 4(t0)				# le o que tá no endereço da frente do bitmap
 	sw s0, 0(t0)				# sava nesse endereço aqui
+	
 	#DebugInt(t3)
 	addi t0, t0, 4				# avança o endereço do bitmap
 	addi t3, t3, 4				# incrementa a coluna
-	blt t3, t4, PrintMapLinha 	# coluna < largura-1, printa a proxima
+	blt t3, t4, PrintMapLinha 	# coluna < largura-2 tiles, printa a proxima
 	
 	addi t0, t0, 320			# add a largura da imagem
 	sub t0, t0, t4				# remove o numero de colunas
@@ -60,19 +61,33 @@ PrintMapLinha:
 	li s0, 320 				# quantidade maxima de colunas
 
 	addi t0, t0, 312		# o ponteiro do bitmap tá no começo, agora vou mover pra penultima coluna
+	
+	la s1, map				# endereço do mapa atual
+	lw s2, 0(s1)			# quantidade de colunas
+	la s3, Camera			# pega a camera atual
+	lw s3, 0(s3)			# Le o valor da camera mesmo
+	
+	addi s1, s1, 4			# ignora a quantidade de linhas
+	addi s1, s1, 4			# ignora a quantidade de colunas
+	
+	add s1, s1, s3 			# soma a camera no endereço base
+	addi s1, s1, -8			# ajusta pra pegar as duas ultimas tiles
 
 PrintMapLastCol:
 
-	# apenas para teste, pinta a ultima coluna de branco
+	#bitmap[][] = map[linha_atual][camera - 8]
 	
-	#for t4 = [312, 320) passo = 4
+	lw s4, 0(s1)				# lê o valor do penultimo tile do mapa com a camera
+	sw s4, 0(t0)				# salva no bitmap nessa coluna
+
+	#bitmap[][] = map[linha_atual][camera-4]
+
+	lw s4, 4(s1)				# lê o valor da ultima tile do mapa com a camera
+	sw s4, 4(t0)				# salva no bitmap na proxima coluna
 	
-	li s1, 0					# cor branca?
-	sw s1, 0(t0)				# salva no bitmap nessa coluna
-	sw s1, 4(t0)				# salva no bitmap na proxima coluna
+	add s1, s1, s2				# Move o ponteiro no mapa para a proxima linha
 	
 	addi t0, t0, 320 			# avança o ponteiro do bitmap para a proxima linha
-								# tamanho do tile ----> 320 - 8 = 312
 	addi t2, t2, 1				# avança a linha atual
 	blt t2, t5, PrintMapLastCol	# linha atual < ultima linha do display, printa a proxima
 	

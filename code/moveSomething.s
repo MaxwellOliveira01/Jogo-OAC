@@ -9,7 +9,6 @@ MoveSomething:
 	# 		Então quem deve se mover é a camera
 	# Caso contrário quem se move é o personagem
 
-	
 	#if x <= 0
 	bge zero, a0, MoveChar
 	
