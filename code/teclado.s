@@ -8,23 +8,29 @@ Tec:
 
 	li t0,'d'
 	li a0,8						# add em x para ir pra direita [MUITO CUIDADO AO ALTERAR ISSO!!!!!
-								#VAI TER QUE CORRIGIR O t4 do 1° for do PrintMap e o 2° for todo]
+								# VAI TER QUE CORRIGIR O t4 do 1° for do PrintMap e o 2° for todo]
 	li a1,0						# add em y pra ir pra direita
+	li a2,1						# nova direção: Direita 
 	beq t2,t0, MoveSomething	# se tecla pressionada for 'd', move para direita
 	
 	li t0,'a'
 	li a0,-8					# add em x para ir pra esq			
 	li a1,0						# add em y para ir pra esq
+	li a2,0						# nova direção: Esquerda
 	beq t2,t0, MoveSomething	# se tecla pressionada for 'a', move pra esquerda
 	
 	li t0, 's'
 	li a0, 0
 	li a1, 8
+	la a2, CharDir
+	lw a2, 0(a2)				# mantém a mesma direção
 	beq t2, t0, MoveSomething
 	
 	li t0, 'w'
 	li a0, 0
 	li a1, -8
+	la a2, CharDir
+	lw a2, 0(a2)				# mantém a mesma direção
 	beq t2, t0, MoveSomething
 	
 	li t0, 'k'

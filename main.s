@@ -26,10 +26,8 @@ Game:
 
 .include "sprites/charDireita.data"
 #.include "sprites/charDireitaMovendo.data"
-#.include "sprites/charEsquerda.data"
+.include "sprites/charEsquerda.data"
 .include "sprites/map.s"
-.include "sprites/map2.s"
-.include "sprites/tile.s"
 
 .text
 .include "code/teclado.s"
