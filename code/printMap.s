@@ -22,7 +22,7 @@ PrintMap:
 	li t4,312				# 320 - tamanho do movimento atual (numero de colunas) [isso tem que ser multiplo de 4(pq to usando load/save word)]
 							# assert(tamanho do movimento atual == tamanho da tile)
 	li t5,240				# carrega a altura em t5 do display
-	
+		
 PrintMapLinha:
 	lw s0, 8(t0)				# le o que tá no endereço da em 2 tiles a frente do bitmap
 	sw s0, 0(t0)				# sava nesse endereço aqui
@@ -66,6 +66,8 @@ PrintMapLinha:
 	lw s2, 0(s1)			# quantidade de colunas
 	la s3, Camera			# pega a camera atual
 	lw s3, 0(s3)			# Le o valor da camera mesmo
+	li s4, 320				
+	add s3, s3, s4			# camera += 320
 	
 	addi s1, s1, 4			# ignora a quantidade de linhas
 	addi s1, s1, 4			# ignora a quantidade de colunas
@@ -94,3 +96,4 @@ PrintMapLastCol:
 	LoadRegisters()
 
 	ret
+

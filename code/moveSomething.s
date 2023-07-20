@@ -12,9 +12,11 @@ MoveSomething:
 	#if x <= 0
 	bge zero, a0, MoveChar
 	
-	#if camera >= tamanhoMapa:
+	#if camera + 320 >= tamanhoMapa:
 	la t0, Camera
 	lw t0, 0(t0)
+	li t1, 320
+	add t0, t0, t1
 
 	# Pega a largura do mapa
 	la t2, map

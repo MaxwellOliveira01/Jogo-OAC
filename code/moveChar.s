@@ -35,12 +35,23 @@ ContinueMoveChar:
 	xori s1, s1, 1
 	
 	# Desenha a tile em oldCharPos no frame oculto
-	la a0, tile										
+	#la a0, tile										
+	#la t0, OldCharPos
+	#lh a1, 0(t0)
+	#lh a2, 2(t0)
+	#mv a3, s1
+	#call Print
+	
+	la a0, map
 	la t0, OldCharPos
 	lh a1, 0(t0)
 	lh a2, 2(t0)
 	mv a3, s1
-	call Print
+	la t0, CharDireita
+	lw a4, 0(t0)
+	lw a5, 4(t0)
+	call PrintTile
+	
 	
 	# Desenha o personagem no frame oculto
 	la a0, CharDireita
@@ -59,12 +70,22 @@ ContinueMoveChar:
 	xori s1, s1, 1
 	
 	# Desenha a tile em oldCharPos no frame oculto
-	la a0, tile										
+	#la a0, tile										
+	#la t0, OldCharPos
+	#lh a1, 0(t0)
+	#lh a2, 2(t0)
+	#mv a3, s1
+	#call Print
+
+	la a0, map
 	la t0, OldCharPos
 	lh a1, 0(t0)
 	lh a2, 2(t0)
 	mv a3, s1
-	call Print
+	la t0, CharDireita
+	lw a4, 0(t0)
+	lw a5, 4(t0)
+	call PrintTile
 	
 	# Desenha o personagem no frame oculto
 	la a0, CharDireita
@@ -79,8 +100,6 @@ MoveCharReturn:
 	ret
 
 CheckBounds:
-
-______AAAA:
 
 	# Não deixar o personagem sair do grid
 	
