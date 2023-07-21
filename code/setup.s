@@ -1,7 +1,6 @@
 Setup:
 	SaveRegisters()
 	
-	
 	# Desenha o mapa inicial 'map'
 		
 	la a0, map

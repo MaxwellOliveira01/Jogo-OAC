@@ -9,7 +9,8 @@
 .text
 
 Main:
-
+	
+	#call History
 	call Setup
 	
 Game:
@@ -28,8 +29,12 @@ Game:
 #.include "sprites/charDireitaMovendo.data"
 .include "sprites/charEsquerda.data"
 .include "sprites/map.s"
+.include "sprites/dialogojogo1.data"
+.include "sprites/dialogojogo2.data"
+.include "sprites/dialogojogo3.data"
 
 .text
+.include "code/history.s"
 .include "code/teclado.s"
 .include "code/print.s"
 .include "code/printMap.s"
