@@ -29,17 +29,9 @@ History:
 	la t0, HistorySleepTimeInMs
 	lw t0, 0(t0)
 	
-	li a7, 30					# ecall de pegar o tempo agr
+	li a7, 32					# ecall de sleep
+	mv a0, t0
 	ecall
-	mv t2, a0					# pega os 30 bits menores
-								# esse vai ser o tempo base 
-								
-WaitScene1:
-	li a7, 30					# pega o tempo agr
-	ecall
-	mv t3, a0					# pega os 30 bits menores do tempo agr
-	sub t3, t3, t2				# subtrai do tempo base pra ver quanto tempo passou
-	bleu t3, t0, WaitScene1
 	
 	# CENA 2
 	
@@ -70,18 +62,9 @@ WaitScene1:
 	la t0, HistorySleepTimeInMs
 	lw t0, 0(t0)
 	
-	li a7, 30					# ecall de pegar o tempo agr
+	li a7, 32					# ecall de sleep
+	mv a0, t0
 	ecall
-	mv t2, a0					# pega os 30 bits menores
-								# esse vai ser o tempo base 
-								
-WaitScene2:
-	li a7, 30					# pega o tempo agr
-	ecall
-	mv t3, a0					# pega os 30 bits menores do tempo agr
-	sub t3, t3, t2				# subtrai do tempo base pra ver quanto tempo passou
-	#DebugInt(t3)
-	bleu t3, t0, WaitScene2
 	
 	
 	# Cena 3
@@ -113,17 +96,12 @@ WaitScene2:
 	la t0, HistorySleepTimeInMs
 	lw t0, 0(t0)
 	
-	li a7, 30					# ecall de pegar o tempo agr
+	la t0, HistorySleepTimeInMs
+	lw t0, 0(t0)
+	
+	li a7, 32					# ecall de sleep
+	mv a0, t0
 	ecall
-	mv t2, a0					# pega os 30 bits menores
-								# esse vai ser o tempo base 
-								
-WaitScene3:
-	li a7, 30					# pega o tempo agr
-	ecall
-	mv t3, a0					# pega os 30 bits menores do tempo agr
-	sub t3, t3, t2				# subtrai do tempo base pra ver quanto tempo passou
-	bleu t3, t0, WaitScene3
 
 
 

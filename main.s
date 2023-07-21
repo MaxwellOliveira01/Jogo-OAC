@@ -10,7 +10,7 @@
 
 Main:
 	
-	#call History
+	call History
 	call Setup
 	
 Game:
