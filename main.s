@@ -45,6 +45,7 @@ Game:
 .include "sprites/dialogojogo2.data"
 .include "sprites/dialogojogo3.data"
 .include "sprites/mapamariointeiro.data"
+.include "sprites/mapHitBox.data"
 
 .text
 .include "code/history.s"
