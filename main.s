@@ -10,7 +10,7 @@
 
 Main:
 	
-	call History
+	#call History
 	call Setup
 	
 Game:
@@ -25,13 +25,26 @@ Game:
 
 .data
 
-.include "sprites/charDireita.data"
-#.include "sprites/charDireitaMovendo.data"
-.include "sprites/charEsquerda.data"
-.include "sprites/map.s"
+#.include "sprites/charDireita.data"
+#.include "sprites/charEsquerda.data"
+#.include "sprites/map.s"
+
+.include "sprites/mario1-dir.data"
+.include "sprites/mario1-esq.data"
+
+.include "sprites/mario2-dir.data"
+.include "sprites/mario2-esq.data"
+
+.include "sprites/mario3-dir.data"
+.include "sprites/mario3-esq.data"
+
+.include "sprites/mario4-dir.data"
+.include "sprites/mario4-esq.data"
+
 .include "sprites/dialogojogo1.data"
 .include "sprites/dialogojogo2.data"
 .include "sprites/dialogojogo3.data"
+.include "sprites/mapamariointeiro.data"
 
 .text
 .include "code/history.s"
@@ -44,5 +57,6 @@ Game:
 .include "code/moveSomething.s"
 .include "code/utils.s"
 .include "code/printTile.s"
+.include "code/selectSpriteCharacter.s"
 
 .include "code/SYSTEMv21.s"

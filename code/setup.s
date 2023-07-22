@@ -14,8 +14,9 @@ Setup:
 	# Desenha o personagem 
 	
 	la a0, CharDireita
-	li a1, 16
-	li a2, 16
+	la t0, CharPos
+	lh a1, 0(t0)
+	lh a2, 2(t0)
 	li a3, 0
 	call Print
 	li a3, 1

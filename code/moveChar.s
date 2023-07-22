@@ -11,6 +11,20 @@ MoveChar:
 	
 ContinueMoveChar:
 
+	# Se for movimento no eixo x, então
+	# Adicionar um em cntMovesX
+	
+	bge zero, a0, NotMovingOnXAxis
+	
+	la t0, cntMovesX			# Lê a quantidade de movimentos em x já feitos
+	lw t1, 0(t0)
+	addi t1, t1, 1				# add 1 e pega mod quantidade de sprites
+	li t2, 4 					# quantidade de sprites de movimento
+	rem t1, t1, t2				# pega mod
+	sw t1, 0(t0)				# salva o valor novo
+
+NotMovingOnXAxis:
+
 	# Salva a posição atual como antiga
 	
 	la t0,CharPos				# Carrega o endereço da posição atual
