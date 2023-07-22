@@ -9,6 +9,10 @@ MoveChar:
 	
 	j CheckBounds
 	
+ContinueToCheckWalls:
+
+	j CheckWalls
+	
 ContinueMoveChar:
 
 	# Se for movimento no eixo x, então
@@ -36,6 +40,8 @@ NotMovingOnXAxis:
 	la t0, CharDir				# Pega a direção atual
 	lw t0, 0(t0)
 	beq a2, t0, LoadSpriteDir	# a direção é igual, pula
+	
+ImpedingMovement:
 	
 	# a direção é diferente, zera os argumentos de movimento
 	li a0, 0
@@ -133,6 +139,19 @@ MoveCharReturn:
 	LoadRegisters()
 	ret
 
+
+
+
+
+
+
+
+
+
+
+
+
+
 CheckBounds:
 
 	# Não deixar o personagem sair do grid
@@ -163,4 +182,108 @@ CheckBounds:
 	bgt t2, t0, MoveCharReturn
 	
 	# Ok, ele estará dentro do grid
+	j ContinueToCheckWalls
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+CheckWalls:
+	
+	# Não alterar os argumentos!!!!!!!!!!
+	# Ainda serão usados para os movimentos
+	
+	la t0, CharPos						# le o endereço das coordenadas
+	lh t1, 0(t0)						# le o x atual
+	lh t2, 2(t0)						# le o y atual
+		
+	add t1, t1, a0						# add o incremento em x
+	add t2, t2, a1						# add o incremento em y
+					
+	# Ok, o personagem vai para (t1, t2). 
+	# Olhar em mapHitBox se essas coordenadas não são uma parede
+	# Lembrar de adicionar o offset da camera no x
+	
+	la t3, Camera						# le o endereço da camera
+	lw t3, 0(t3)						# le a camera
+	add t1, t1, t3						# adiciona o offset da camera na coord x
+	
+	# Testando o superior esquerdo do personagem
+	la s0, mapHitBox					# le o endereço do hitbox
+	lw s1, 0(s0)						# le a quantidade de colunas do hitbox
+	lw s2, 4(s0) 						# le a quantidade de linhas do hitbox
+	addi s0, s0, 8						# Ignora a largura/comprimento no inicio do hitbox
+	mul s3, t2, s1						# calcula y * colunas_hitbox
+	add s0, s0, s3						# move o ponteiro do mapa para a linha correta
+	add s0, s0, t1						# move o ponteiro do mapa para a coluna correta
+	lb s4, 0(s0)						# lê a cor neste ponto do mapa
+	beq s4, zero, ImpedingMovement		# é parede, nao vai
+	
+	# Testa o ponto inferior esquerdo
+	la t0, CharDireita					# pega um sprite qualquer
+	lw t3, 4(t0)						# pega a altura do personagem
+	add t2, t2, t3						# adiciona a altura em y
+	addi t2, t2, -1						# magia antiga
+	
+	la s0, mapHitBox					# le o endereço do hitbox
+	lw s1, 0(s0)						# le a quantidade de colunas do hitbox
+	lw s2, 4(s0) 						# le a quantidade de linhas do hitbox
+	addi s0, s0, 8						# Ignora a largura/comprimento no inicio do hitbox
+	mul s3, t2, s1						# calcula y * colunas_hitbox
+	add s0, s0, s3						# move o ponteiro do mapa para a linha correta
+	add s0, s0, t1						# move o ponteiro do mapa para a coluna correta
+	lb s4, 0(s0)						# lê a cor neste ponto do mapa
+	beq s4, zero, ImpedingMovement		# é parede, nao vai
+	
+	# Testa o ponto inferior direito
+	la t0, CharDireita					# pega um sprite qualquer
+	lw t3, 0(t0)						# pega a largura do personagem
+	add t1, t1, t3						# adiciona a largura em x
+	addi t1, t1, -1						# magia antiga
+	
+	la s0, mapHitBox					# le o endereço do hitbox
+	lw s1, 0(s0)						# le a quantidade de colunas do hitbox
+	lw s2, 4(s0) 						# le a quantidade de linhas do hitbox
+	addi s0, s0, 8						# Ignora a largura/comprimento no inicio do hitbox
+	mul s3, t2, s1						# calcula y * colunas_hitbox
+	add s0, s0, s3						# move o ponteiro do mapa para a linha correta
+	add s0, s0, t1						# move o ponteiro do mapa para a coluna correta
+	lb s4, 0(s0)						# lê a cor neste ponto do mapa
+	beq s4, zero, ImpedingMovement		# é parede, nao vai
+	
+	# Testa o ponto superior direito
+	la t0, CharDireita					# pega um sprite qualquer
+	lw t3, 4(t0)						# pega a altura do personagem
+	sub t2, t2, t3						# adiciona a altura em y
+	addi t2, t2, 1						# magia antiga
+	
+	la s0, mapHitBox					# le o endereço do hitbox
+	lw s1, 0(s0)						# le a quantidade de colunas do hitbox
+	lw s2, 4(s0) 						# le a quantidade de linhas do hitbox
+	addi s0, s0, 8						# Ignora a largura/comprimento no inicio do hitbox
+	mul s3, t2, s1						# calcula y * colunas_hitbox
+	add s0, s0, s3						# move o ponteiro do mapa para a linha correta
+	add s0, s0, t1						# move o ponteiro do mapa para a coluna correta
+	lb s4, 0(s0)						# lê a cor neste ponto do mapa
+	beq s4, zero, ImpedingMovement		# é parede, nao vai
+	
+	# não é parede, pode ir
+		
 	j ContinueMoveChar

@@ -44,8 +44,11 @@ Game:
 .include "sprites/dialogojogo1.data"
 .include "sprites/dialogojogo2.data"
 .include "sprites/dialogojogo3.data"
+
 .include "sprites/mapamariointeiro.data"
 .include "sprites/mapHitBox.data"
+
+#.include "sprites/map2.data" # apagar isso, é só um teste
 
 .text
 .include "code/history.s"
