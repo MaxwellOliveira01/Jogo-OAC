@@ -7,7 +7,15 @@ MoveCamera:
 	lw s1, 0(s0)
 	addi s1, s1, 8
 	sw s1, 0(s0)
-	
+
+	# Adiciona um em cntMovesX
+	la t0, cntMovesX			# Lê a quantidade de movimentos em x já feitos
+	lw t1, 0(t0)
+	addi t1, t1, 1				# add 1 e pega mod quantidade de sprites
+	li t2, 4 					# quantidade de sprites de movimento
+	rem t1, t1, t2				# pega mod
+	sw t1, 0(t0)				# salva o valor novo
+			
 	# Desenha no frame oculto, inverte o frame e desenha no atual
 	
 	# Pega o frame oculto em s1
@@ -47,7 +55,8 @@ MoveCamera:
 
 	# Desenha o personagem no no frame oculto
 
-	la a0, CharDireita
+	#la a0, CharDireita
+	call SelectSpriteCharacter
 	la t0, CharPos
 	lh a1, 0(t0)
 	lh a2, 2(t0)
@@ -90,10 +99,10 @@ MoveCamera:
 	lw a5, 4(t0)
 	call PrintTile
 
-
 	# Desenha o personagem no no frame oculto
 
-	la a0, CharDireita
+	#la a0, CharDireita
+	call SelectSpriteCharacter
 	la t0, CharPos
 	lh a1, 0(t0)
 	lh a2, 2(t0)

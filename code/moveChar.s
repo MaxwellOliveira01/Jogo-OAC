@@ -14,7 +14,7 @@ ContinueMoveChar:
 	# Se for movimento no eixo x, então
 	# Adicionar um em cntMovesX
 	
-	bge zero, a0, NotMovingOnXAxis
+	beq zero, a0, NotMovingOnXAxis
 	
 	la t0, cntMovesX			# Lê a quantidade de movimentos em x já feitos
 	lw t1, 0(t0)
@@ -42,19 +42,6 @@ NotMovingOnXAxis:
 	li a1, 0
 
 LoadSpriteDir:
-
-	# Carrega o sprite correto em s2
-	# supoem que seja direita
-	la s2, CharDireita
-	
-	# se for direita, então pode pular e começar a printar
-	bne a2, zero, ContinueMovingChar
-	
-	# se não for, carrega a esquerda
-	la s2, CharEsquerda
-
-ContinueMovingChar:
-
 
 	# Adiciona os incrementos em x e y
 	
@@ -98,7 +85,8 @@ ContinueMovingChar:
 
 	# Desenha o personagem no frame oculto
 	#la a0, CharDireita
-	mv a0, s2
+	#mv a0, s2
+	call SelectSpriteCharacter
 	la t0, CharPos
 	lh a1, 0(t0)
 	lh a2, 2(t0)
@@ -133,7 +121,8 @@ ContinueMovingChar:
 	
 	# Desenha o personagem no frame oculto
 	#la a0, CharDireita
-	mv a0, s2
+	#mv a0, s2
+	call SelectSpriteCharacter
 	la t0, CharPos
 	lh a1, 0(t0)
 	lh a2, 2(t0)
