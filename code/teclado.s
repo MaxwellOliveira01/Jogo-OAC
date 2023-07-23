@@ -36,6 +36,8 @@ Tec:
 	li t0, 'w'
 	beq t2, t0, StartJump
 
+	li t0, 'm'
+	beq t2, t0, InvMuteMidi
 	
 	li t0, 'k'
 	beq t2, t0, Utils

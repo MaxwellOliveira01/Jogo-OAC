@@ -11,10 +11,10 @@
 Main:
 	
 	#call History
-	#call Midi
 	call Setup
 	
 Game:
+	call Midi
 	call Tec
 	call Jump
 	
