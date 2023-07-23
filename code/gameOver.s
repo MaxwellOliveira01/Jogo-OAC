@@ -8,6 +8,8 @@ GameOver:
 	# Então terá que escutar a musica tema do mário pelo resto
 	# dos seus dias!!!!!
 	
+	
+	
 	li a7, 10
 	ecall
 	

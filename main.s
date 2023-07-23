@@ -10,7 +10,7 @@
 
 Main:
 	
-	#call History
+	call History
 	call Setup
 	
 Game:
@@ -20,6 +20,7 @@ Game:
 	call Jump
 	call Tec
 	call CheckDamage
+	call CheckWin
 	
 	j Game
 
@@ -47,6 +48,13 @@ Game:
 .include "sprites/dialogojogo2.data"
 .include "sprites/dialogojogo3.data"
 
+.include "sprites/dialogonovo1.data"
+.include "sprites/dialogonovo2.data"
+.include "sprites/dialogonovo3.data"
+.include "sprites/dialogonovo4.data"
+.include "sprites/dialogonovo5.data"
+.include "sprites/dialogonovo6.data"
+.include "sprites/dialogonovo7.data"
 .include "sprites/map.data"
 .include "sprites/mapHitBox.data"
 
@@ -69,5 +77,6 @@ Game:
 .include "code/lifeManager.s"
 .include "code/gameOver.s"
 .include "code/theEnd.s"
+.include "code/CheckWin.s"
 
 .include "code/SYSTEMv21.s"
