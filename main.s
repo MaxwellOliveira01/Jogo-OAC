@@ -11,10 +11,12 @@
 Main:
 	
 	#call History
+	#call Midi
 	call Setup
 	
 Game:
 	call Tec
+	call Jump
 	
 	j Game
 						
@@ -62,5 +64,7 @@ Game:
 .include "code/utils.s"
 .include "code/printTile.s"
 .include "code/selectSpriteCharacter.s"
+.include "code/midi.s"
+.include "code/jump.s"
 
 .include "code/SYSTEMv21.s"

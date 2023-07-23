@@ -14,3 +14,14 @@ CrashsDoRars:	.word 7				# Quantas vezes o RARS crashou/bugou durante o desenvol
 
 cntMovesX: 		.word 0				# Quantos movimentos no eixo x já foram feitos
 									# Isso vai ser util pra saber qual sprite do personagem usar
+									
+
+Jumping:		.word 0				# Booleano pra afirmar se o jogador está 
+									# pulando ou não
+									
+JumpSleepTime:	.word 500			# Tempo entre as chamadas do jump
+
+LastJumpUpdate:	.word 0				# Momento da ultima ação de jump
+
+JumpHeight:		.word 40			# altura máxima do pulo
+JumpCurrentHeight: .word 0			# altura que o pulo atual já subiu

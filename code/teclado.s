@@ -19,19 +19,23 @@ Tec:
 	li a2,0						# nova direção: Esquerda
 	beq t2,t0, MoveSomething	# se tecla pressionada for 'a', move pra esquerda
 	
-	li t0, 's'
-	li a0, 0
-	li a1, 8
-	la a2, CharDir
-	lw a2, 0(a2)				# mantém a mesma direção
-	beq t2, t0, MoveSomething
+#	li t0, 's'
+#	li a0, 0
+#	li a1, 8
+#	la a2, CharDir
+#	lw a2, 0(a2)				# mantém a mesma direção
+#	beq t2, t0, MoveSomething
 	
+#	li t0, 'w'
+#	li a0, 0
+#	li a1, -8
+#	la a2, CharDir
+#	lw a2, 0(a2)				# mantém a mesma direção
+#	beq t2, t0, MoveSomething
+
 	li t0, 'w'
-	li a0, 0
-	li a1, -8
-	la a2, CharDir
-	lw a2, 0(a2)				# mantém a mesma direção
-	beq t2, t0, MoveSomething
+	beq t2, t0, StartJump
+
 	
 	li t0, 'k'
 	beq t2, t0, Utils
