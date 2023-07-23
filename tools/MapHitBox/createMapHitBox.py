@@ -54,6 +54,14 @@ with os.scandir('walls/') as it:
             walls.append(readSprite(entry.path))
             #print(len(walls[-1][0]), len(walls[-1]))
 
+damage = []
+with os.scandir('dano/') as it:
+    for entry in it:
+        if entry.name.endswith('.data') and entry.is_file():
+            damage.append(readSprite(entry.path))
+            #print(len(walls[-1][0]), len(walls[-1]))
+
+
 #print(len(walls))
 
 tamTile = 16
@@ -75,12 +83,26 @@ for i in range(0, len(map), tamTile):
             if w == cur_sprite:
                 isWall = True
 
+        isDamage = False
+
+        for w in damage:
+            if w == cur_sprite:
+                isDamage = True
+
         if isWall:
             
             # if is a wall change the cur_sprite on map to 0
 
             for k in range(tamTile):
                 map[i + k][j : j + tamTile] = [0] * tamTile
+
+        elif isDamage:
+
+            # this sprite should damage char
+            # paint it as a red
+
+            for k in range(tamTile):
+                map[i + k][j : j + tamTile] = [7] * tamTile
 
         else:
 
