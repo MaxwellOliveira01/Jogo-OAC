@@ -14,9 +14,11 @@ CrashsDoRars:	.word 7				# Quantas vezes o RARS crashou/bugou durante o desenvol
 
 cntMovesX: 		.word 0				# Quantos movimentos no eixo x já foram feitos
 									# Isso vai ser util pra saber qual sprite do personagem usar
-									
 
-
+Lifes:			.word 5				# Quantidade de vidas do jogador
+RemovesLife:	.word 0				# boleano para afirmar se devemos remover uma
+									# vida do jogador
+			
 																								
 	
 # Jumping section
@@ -24,7 +26,7 @@ cntMovesX: 		.word 0				# Quantos movimentos no eixo x já foram feitos
 Jumping:				.word 0				# Booleano pra afirmar se o jogador está 
 											# pulando ou não
 									
-JumpSleepTime:			.word 5			# Tempo entre as chamadas do jump
+JumpSleepTime:			.word 5				# Tempo entre as chamadas do jump
 
 LastJumpUpdateTime:		.word 0				# Ultima vez que o pulo foi atualizado
 
@@ -39,3 +41,4 @@ JumpHeightPerClock: 	.word 1				# quantos pixels o pulo aumenta ou a gravidade d
 NextNote:	.word 0					# Proxima nota que está será tocada
 PlayThCurrentNoteUntil:	.word 0		# Até quando a nota atual deve ser tocada?
 MuteMidi:	.word 0					# Booleano para parar de tocar as notas
+

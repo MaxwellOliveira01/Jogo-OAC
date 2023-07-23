@@ -101,8 +101,6 @@ for i in range(0, len(map), tamTile):
             # this sprite should damage char
             # paint it as a red
 
-            print("damage")
-            
             for k in range(tamTile):
                 map[i + k][j : j + tamTile] = [7] * tamTile
 

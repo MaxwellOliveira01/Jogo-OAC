@@ -14,15 +14,14 @@ Main:
 	call Setup
 	
 Game:
+
+	call LifeDisplay
 	call Midi
 	call Jump
 	call Tec
-
+	call CheckDamage
 	
 	j Game
-						
-	li a7, 10
-	ecall		
 
 # === Região para dar includes === #
 
@@ -48,10 +47,10 @@ Game:
 .include "sprites/dialogojogo2.data"
 .include "sprites/dialogojogo3.data"
 
-#.include "sprites/map.data"
+.include "sprites/map.data"
 .include "sprites/mapHitBox.data"
 
-.include "sprites/mapHitBox2.data" # apagar isso, é só um teste
+#.include "sprites/mapHitBox2.data" # apagar isso, é só um teste
 
 .text
 .include "code/history.s"
@@ -67,5 +66,8 @@ Game:
 .include "code/selectSpriteCharacter.s"
 .include "code/midi.s"
 .include "code/jump.s"
+.include "code/lifeManager.s"
+.include "code/gameOver.s"
+.include "code/theEnd.s"
 
 .include "code/SYSTEMv21.s"
