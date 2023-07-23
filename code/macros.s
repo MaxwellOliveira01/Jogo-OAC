@@ -69,3 +69,28 @@
 	la a0, QUEBRA
 	ecall
 .end_macro
+
+.macro DebugInt(%msg, %reg)
+.data
+	MSG: 	.string %msg
+	SEP:	.string	 ": "
+	QUEBRA: .string  "\n"
+.text
+
+	li a7, 4
+	la a0, MSG
+	ecall
+	
+	li a7, 4
+	la a0, SEP
+	ecall
+	
+	li a7, 1
+	mv a0, %reg
+	ecall
+	
+	li a7, 4
+	la a0, QUEBRA
+	ecall
+	
+.end_macro

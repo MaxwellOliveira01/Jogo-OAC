@@ -15,8 +15,9 @@ Main:
 	
 Game:
 	call Midi
-	call Tec
 	call Jump
+	call Tec
+
 	
 	j Game
 						

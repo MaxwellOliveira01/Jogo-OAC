@@ -11,11 +11,13 @@ Utils:
 	la t0, CharDir				
 	lw t3, 0(t0)				# Lê a direção atual
 	
-	DebugInt(t1)
-	DebugInt(t2)
-	DebugInt(t3)
+	la t0, Jumping
+	lw t3, 0(t0)
 	
-	
+	DebugInt("x atual", t1)
+	DebugInt("y atual", t2)
+	DebugInt("jumping", t3)
+	DebugString("") 			# pular linha
 	
 	LoadRegisters()
 	
