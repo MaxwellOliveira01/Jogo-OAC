@@ -101,15 +101,17 @@ for i in range(0, len(map), tamTile):
             # this sprite should damage char
             # paint it as a red
 
+            print("damage")
+            
             for k in range(tamTile):
                 map[i + k][j : j + tamTile] = [7] * tamTile
 
         else:
 
-            # if is not a wall, change the cur_sprite to white color
+            # if is not a wall, change the cur_sprite to blue color
 
             for k in range(tamTile):
-                map[i + k][j : j + tamTile] = [255] * tamTile
+                map[i + k][j : j + tamTile] = [227] * tamTile
 
 
 

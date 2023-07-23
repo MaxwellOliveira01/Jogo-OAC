@@ -48,8 +48,7 @@ Game:
 .include "sprites/dialogojogo2.data"
 .include "sprites/dialogojogo3.data"
 
-#.include "sprites/mapamariointeiro.data"
-#.include "sprites/mapa_atual.data"
+#.include "sprites/map.data"
 .include "sprites/mapHitBox.data"
 
 .include "sprites/mapHitBox2.data" # apagar isso, é só um teste
