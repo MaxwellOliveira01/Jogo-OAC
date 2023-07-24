@@ -1,17 +1,15 @@
 GameOver:
 	SaveRegisters()
 	
-	# avisar que o cara perdeu, colocar uma tela preta
-	# loop infinito
-	# com a mensagem
-	# HAHAHA, você não foi capaz de terminar o jogo?
-	# Então terá que escutar a musica tema do mário pelo resto
-	# dos seus dias!!!!!
+	la a0, gameover
+	li a1, 0
+	li a2, 0
+	li a3, 0
+	call Print
+	li a3, 1
+	call Print
 	
-	
-	
-	li a7, 10
-	ecall
+LoopGameOver: j LoopGameOver
 	
 	LoadRegisters()
 	ret

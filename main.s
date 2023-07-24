@@ -57,6 +57,8 @@ Game:
 .include "sprites/dialogonovo7.data"
 .include "sprites/map.data"
 .include "sprites/mapHitBox.data"
+.include "sprites/gameover.data"
+.include "sprites/wingame.data"
 
 #.include "sprites/mapHitBox2.data" # apagar isso, é só um teste
 
